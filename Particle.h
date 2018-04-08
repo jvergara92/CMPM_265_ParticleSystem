@@ -12,10 +12,11 @@ private:
 	float timePassed;
 	Clock clock;
 	bool alive;
+	Texture texture;
 
 public:
 
-	Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime);
+	Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime, String tex);
 	~Particle();
 	void Update();
 	void Draw();

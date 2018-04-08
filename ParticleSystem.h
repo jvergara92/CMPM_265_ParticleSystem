@@ -13,9 +13,12 @@ private:
 	float emitRate;
 	float timePassed;
 	float minVel, maxVel;
+	float particleSize;
+	String tex;
+	RectangleShape textureReference;
 
 public:
-	ParticleSystem(Vector2f position, float emitRate, float minVelocity, float maxVelocity);
+	ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, String textureFile);
 	~ParticleSystem();
 
 	void Update();

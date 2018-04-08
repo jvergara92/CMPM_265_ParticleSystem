@@ -2,15 +2,17 @@
 
 
 
-ParticleSystem::ParticleSystem(Vector2f position, float emitRate, float minVelocity, float maxVelocity)
+ParticleSystem::ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, String textureFile)
 {
 	this->position = position;
 	float angle = rand() % 10 + 50;
 	this->leftBound = Vector2f(position.x - angle, position.y - 100);
 	this->rightBound = Vector2f(position.x + angle, position.y - 100);
 	this->emitRate = emitRate;
+	this->particleSize = particleSize;
 	this->minVel = minVelocity;
 	this->maxVel = maxVelocity;
+	this->tex = textureFile;
 }
 
 
@@ -50,12 +52,12 @@ Particle* ParticleSystem::CreateParticle()
 {
 	float vel = minVel + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (maxVel - minVel)));
 	Vector2f velocity = Vector2f(vel, vel);
-	Vector2f size = Vector2f(3, 3);
+	Vector2f size = Vector2f(particleSize, particleSize);
 	int xMin = leftBound.x;
 	int xMax = rightBound.x - leftBound.x;
 	Vector2f dir = Vector2f(rand() % xMin + xMax, rightBound.y) - position;
 	dir = Normalize(dir);
-	return new Particle(this->position, velocity, size, dir, rand() % 1 + 2);
+	return new Particle(this->position, velocity, size, dir, rand() % 1 + 2, tex);
 }
 
 

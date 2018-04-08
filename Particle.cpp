@@ -2,7 +2,7 @@
 
 
 
-Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime)
+Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime, String tex)
 {
 	this->position = startPos;
 	this->velocity = velocity;
@@ -12,9 +12,10 @@ Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f
 	this->lifetime = lifetime;
 	timePassed = 0;
 	
+	texture.loadFromFile(tex);
 	shape.setSize(size);
 	shape.setPosition(startPos);
-	shape.setFillColor(Color::Red);
+	shape.setTexture(&texture);
 	shape.setOrigin(size.x / 2, size.y / 2);
 }
 
