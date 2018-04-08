@@ -1,5 +1,5 @@
 #include "Globals.h";
-#include "ParticleSystem.h";
+#include "ParticleManager.h";
 
 void update_state();
 void render_frame();
@@ -9,7 +9,7 @@ RenderWindow window(sf::VideoMode(1000, 700), "JVergara Particle System");
 int main()
 {
 	srand(time(NULL));
-	ParticleSystem *ps = new ParticleSystem(Vector2f(500, 500), .1);
+	ParticleManager particleManager;
 	
 	float accumulatedTime = 0;
 	Clock clock;
@@ -34,8 +34,8 @@ int main()
 		}
 
 		window.clear();
-		ps->Update();
-		ps->Draw();
+		particleManager.Update();
+		particleManager.Draw();
 		window.display();
 	}
 

@@ -2,12 +2,15 @@
 
 
 
-ParticleSystem::ParticleSystem(Vector2f position, float emitRate)
+ParticleSystem::ParticleSystem(Vector2f position, float emitRate, float minVelocity, float maxVelocity)
 {
 	this->position = position;
-	this->leftBound = Vector2f(position.x - 50, position.y - 100);
-	this->rightBound = Vector2f(position.x + 50, position.y - 100);
+	float angle = rand() % 10 + 50;
+	this->leftBound = Vector2f(position.x - angle, position.y - 100);
+	this->rightBound = Vector2f(position.x + angle, position.y - 100);
 	this->emitRate = emitRate;
+	this->minVel = minVelocity;
+	this->maxVel = maxVelocity;
 }
 
 
@@ -45,7 +48,8 @@ void ParticleSystem::Draw()
 
 Particle* ParticleSystem::CreateParticle() 
 {
-	Vector2f velocity = Vector2f(.04, .04);
+	float vel = minVel + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (maxVel - minVel)));
+	Vector2f velocity = Vector2f(vel, vel);
 	Vector2f size = Vector2f(3, 3);
 	int xMin = leftBound.x;
 	int xMax = rightBound.x - leftBound.x;

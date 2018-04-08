@@ -12,9 +12,10 @@ private:
 	Clock clock;
 	float emitRate;
 	float timePassed;
+	float minVel, maxVel;
 
 public:
-	ParticleSystem(Vector2f position, float emitRate);
+	ParticleSystem(Vector2f position, float emitRate, float minVelocity, float maxVelocity);
 	~ParticleSystem();
 
 	void Update();
