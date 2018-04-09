@@ -16,6 +16,7 @@ private:
 	float particleSize;
 	String tex;
 	RectangleShape textureReference;
+	float keyboardCooldown, keyboardTimePassed;
 
 public:
 	ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, String textureFile);
@@ -26,6 +27,7 @@ public:
 	Particle* CreateParticle();
 	Vector2f Normalize(Vector2f n);
 	void ClearDeadParticles();
+	int numParticles();
 
 };
 

@@ -13,6 +13,8 @@ ParticleSystem::ParticleSystem(Vector2f position, float emitRate, float particle
 	this->minVel = minVelocity;
 	this->maxVel = maxVelocity;
 	this->tex = textureFile;
+	this->keyboardTimePassed = 0;
+	this->keyboardCooldown = 0.1f;
 }
 
 
@@ -26,6 +28,7 @@ void ParticleSystem::Update()
 
 	float dt = clock.restart().asSeconds();
 	timePassed += dt;
+	keyboardTimePassed += dt;
 
 	for (Particle* p : particles) {
 		p->Update();
@@ -36,6 +39,15 @@ void ParticleSystem::Update()
 	if (timePassed > emitRate) {
 		particles.push_back(CreateParticle());
 		timePassed = 0;
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::Left) && keyboardTimePassed >= keyboardCooldown) {
+		emitRate *= 1.2f;
+		keyboardTimePassed = 0;
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Right) && keyboardTimePassed >= keyboardCooldown) {
+		emitRate *= 0.8f;
+		keyboardTimePassed = 0;
 	}
 }
 
@@ -57,7 +69,7 @@ Particle* ParticleSystem::CreateParticle()
 	int xMax = rightBound.x - leftBound.x;
 	Vector2f dir = Vector2f(rand() % xMin + xMax, rightBound.y) - position;
 	dir = Normalize(dir);
-	return new Particle(this->position, velocity, size, dir, rand() % 1 + 2, tex);
+	return new Particle(this->position, velocity, size, dir, rand() % 1 + 2, tex, "shrink", "slow");
 }
 
 
@@ -80,4 +92,8 @@ void ParticleSystem::ClearDeadParticles() {
 			break;
 		}
 	}
+}
+
+int ParticleSystem::numParticles() {
+	return particles.size();
 }

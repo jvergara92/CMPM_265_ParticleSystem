@@ -1,8 +1,6 @@
 #include "Globals.h";
 #include "ParticleManager.h";
 
-void update_state();
-void render_frame();
 
 RenderWindow window(sf::VideoMode(1000, 700), "JVergara Particle System");
 
@@ -18,9 +16,10 @@ int main()
 	{
 		float dt = clock.restart().asSeconds();
 		accumulatedTime += dt;
-		if (accumulatedTime >= 0.02f) {
-			update_state();
-			render_frame();
+		if (accumulatedTime >= 0.01f) {
+			window.clear();
+			particleManager.Update();
+			particleManager.Draw();
 			window.display();
 			accumulatedTime = 0;
 		}
@@ -33,10 +32,7 @@ int main()
 				window.close();
 		}
 
-		window.clear();
-		particleManager.Update();
-		particleManager.Draw();
-		window.display();
+		
 	}
 
 	return 0;

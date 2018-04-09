@@ -3,8 +3,9 @@
 
 class ParticleManager
 {
-public:
+private:
 	vector<ParticleSystem*> systems;
+	int numParticles;
 
 public:
 	ParticleManager();
