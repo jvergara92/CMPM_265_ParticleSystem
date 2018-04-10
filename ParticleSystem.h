@@ -14,12 +14,12 @@ private:
 	float timePassed;
 	float minVel, maxVel;
 	float particleSize;
-	String tex;
+	int tex;
 	RectangleShape textureReference;
 	float keyboardCooldown, keyboardTimePassed;
 
 public:
-	ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, String textureFile);
+	ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, int tex);
 	~ParticleSystem();
 
 	void Update();

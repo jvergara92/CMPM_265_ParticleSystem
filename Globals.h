@@ -15,3 +15,4 @@ using namespace std;
 using namespace sf;
 
 extern RenderWindow window;
+extern vector<Texture> textures;

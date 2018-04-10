@@ -2,17 +2,17 @@
 
 
 
-ParticleSystem::ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, String textureFile)
+ParticleSystem::ParticleSystem(Vector2f position, float emitRate, float particleSize, float minVelocity, float maxVelocity, int tex)
 {
 	this->position = position;
-	float angle = rand() % 10 + 50;
+	float angle = rand() % 10 + 120;
 	this->leftBound = Vector2f(position.x - angle, position.y - 100);
 	this->rightBound = Vector2f(position.x + angle, position.y - 100);
 	this->emitRate = emitRate;
 	this->particleSize = particleSize;
 	this->minVel = minVelocity;
 	this->maxVel = maxVelocity;
-	this->tex = textureFile;
+	this->tex = tex;
 	this->keyboardTimePassed = 0;
 	this->keyboardCooldown = 0.1f;
 }

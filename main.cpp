@@ -3,12 +3,20 @@
 
 
 RenderWindow window(sf::VideoMode(1000, 700), "JVergara Particle System");
+vector<Texture> textures;
 
 int main()
 {
 	srand(time(NULL));
+	Texture tex1, tex2, tex3;
+	textures.push_back(tex1);
+	textures.push_back(tex2);
+	textures.push_back(tex3);
+	textures[0].loadFromFile("Sprites/bubble.png");
+	textures[1].loadFromFile("Sprites/smoke.png");
+	textures[2].loadFromFile("Sprites/water.png");
 	ParticleManager particleManager;
-	
+
 	float accumulatedTime = 0;
 	Clock clock;
 

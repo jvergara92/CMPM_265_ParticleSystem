@@ -1,6 +1,6 @@
 #include "Particle.h"
 
-Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime, String tex)
+Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime, int tex)
 {
 	this->position = startPos;
 	this->velocity = velocity;
@@ -10,14 +10,13 @@ Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f
 	this->lifetime = lifetime;
 	timePassed = 0;
 
-	texture.loadFromFile(tex);
 	shape.setSize(size);
 	shape.setPosition(startPos);
-	shape.setTexture(&texture);
+	shape.setTexture(&textures[tex]);
 	shape.setOrigin(size.x / 2, size.y / 2);
 }
 
-Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime, String tex, String scale, String speedChange)
+Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f dir, float lifetime, int tex, String scale, String speedChange)
 {
 	this->position = startPos;
 	this->startVelocity = this->velocity = velocity;
@@ -29,10 +28,9 @@ Particle::Particle(Vector2f startPos, Vector2f velocity, Vector2f size, Vector2f
 	this->dVelocity = speedChange;
 	timePassed = 0;
 	
-	texture.loadFromFile(tex);
 	shape.setSize(size);
 	shape.setPosition(startPos);
-	shape.setTexture(&texture);
+	shape.setTexture(&textures[tex]);
 	shape.setOrigin(size.x / 2, size.y / 2);
 
 	if (scale == "grow") {
